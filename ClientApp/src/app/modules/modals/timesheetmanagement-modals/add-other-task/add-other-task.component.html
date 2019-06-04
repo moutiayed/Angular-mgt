@@ -1,0 +1,15 @@
+<nb-card [style.width.px]="800" [style.height.px]="600">
+  <nb-card-header>
+    List of other Tasks
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" 
+    (userRowSelect)="rowClicked($event)">
+    </ng2-smart-table>
+    <br>
+    <button nbButton class="submitButton" (click)="add()" type="submit" hero status="success">Add</button>
+  </nb-card-body>
+
+</nb-card>

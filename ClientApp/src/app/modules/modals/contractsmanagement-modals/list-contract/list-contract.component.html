@@ -1,0 +1,18 @@
+<nb-card [style.width.px]="1300" [style.height.px]="700">
+  
+  <nb-card-header>
+    Contracts List
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="contracts" 
+    (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+
+  <!-- <nb-card-footer>
+    <button nbButton hero status="success" (click)="open()" class="submitButton" >New Contract</button>
+  </nb-card-footer> -->
+
+</nb-card>

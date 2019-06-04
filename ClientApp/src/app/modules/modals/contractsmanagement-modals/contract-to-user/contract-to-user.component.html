@@ -1,0 +1,40 @@
+<nb-card [style.width.px]="1000" [style.height.px]="325">
+    <nb-card-header>
+      Add Contract to user
+      <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+    </nb-card-header>
+  
+    <nb-card-body>
+  
+      <form (ngSubmit)="create()">
+  
+        <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label>Contract</label>
+                  <select class="form-control" placeholder="Select Contract" size="small" outline status="success"
+                    [(ngModel)]="idcontract" name="contract" (click)="$event.preventDefault()">
+                    <option value={{contract.id}} *ngFor="let contract of contracts">
+                      {{contract.name}}
+                    </option>
+                  </select>
+                </div>
+          </div>
+          <div class="col-sm-6">
+          <div class="form-group">
+              <label for="rate">Rate</label>
+              <input nbInput type="number" class="form-control" id="Rate" name="Rate" placeholder="Rate" min="1"
+              [(ngModel)]="rate.Value" >
+            </div>
+          </div>
+        </div>
+  
+  
+      
+  
+        <button nbButton class="submitButton" type="submit" hero status="success">Submit</button>
+  
+      </form>
+  
+    </nb-card-body>
+  </nb-card>

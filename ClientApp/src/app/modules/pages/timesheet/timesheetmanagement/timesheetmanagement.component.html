@@ -1,0 +1,45 @@
+<nb-card>
+  <nb-card-header>
+    Timesheet List
+    <button *ngIf="accessChecker.isGranted('create', 'timesheets') | async" nbButton outline status="success"
+      (click)="openAddTasks()">Add Tasks</button>
+    <button *ngIf="accessChecker.isGranted('create', 'timesheets') | async" nbButton outline status="success"
+      (click)="openAddOtherTasks()">Add Other Tasks</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <div class="row" *ngIf="accessChecker.isGranted('view', 'timesheets') | async">
+
+      <div class="column" class="col-sm-3">
+        <div *ngIf="accessChecker.isGranted('remove', 'teams') | async">
+          <label><b>Employee</b></label>
+          <select class="form-control" placeholder="Select User" size="small" outline status="success" [(ngModel)]="idE"
+            name="idE">
+            <option value="" selected>Select your option</option>
+            <option *ngFor=" let employee of employees " value="{{employee.id}}">
+              {{employee.firstName}} {{employee.lastName}}
+            </option>
+          </select>
+          <br>
+          <br>
+        </div>
+
+        <div>
+          <h6>Selected range: {{ range.start | date }} - {{ range.end | date }}</h6>
+          <nb-calendar-range [(range)]="range" (rangeChange)="handleRangeChange($event)"
+            [(boundingMonth)]="boundingMonthValue">
+          </nb-calendar-range>
+        </div>
+      </div>
+
+      <div class="column" class="col-sm-9">
+        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onEditConfirm($event)"
+          (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+      </div>
+
+    </div>
+
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,12 @@
+<nb-menu *ngIf="accessChecker.isGranted('view', 'tasks') | async" [items]="menu2">
+</nb-menu>
+
+<br>
+
+<nb-menu *ngIf="accessChecker.isGranted('remove', 'teams') | async" [items]="menu3">
+</nb-menu>
+
+<br>
+
+<nb-menu *ngIf="accessChecker.isGranted('remove', 'teams') | async" [items]="menu">
+</nb-menu>

@@ -1,0 +1,33 @@
+nb-card-header button {
+    float: right;
+  }
+
+  button {
+    margin: 1rem;
+  }
+
+  [nbInput] {
+    margin-bottom: 1rem;
+  }
+
+  .form-control:focus {
+    box-shadow:none;
+  }
+
+  .submitButton {
+    float: right;
+  }
+
+  nb-card-header button {
+    float: right;
+  }
+
+/* Progress bar */ 
+.container {
+  display: flex;
+  align-items: center;
+}
+
+nb-progress-bar {
+  flex: 1;
+}

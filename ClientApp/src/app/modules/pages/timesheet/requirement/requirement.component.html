@@ -1,0 +1,15 @@
+<nb-card>
+  <nb-card-header>
+    Requirement List
+    <button *ngIf="accessChecker.isGranted('create', 'requirements') | async" nbButton outline status="success"
+      (click)="open()">New Requirement</button>
+    <button *ngIf="accessChecker.isGranted('create', 'requirements') | async" nbButton hero status="info">Import
+      Requirements From File</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table *ngIf="accessChecker.isGranted('view', 'requirements') | async" [settings]="settings"
+      [source]="source" (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

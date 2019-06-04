@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>
+    Customers List
+    <button *ngIf="accessChecker.isGranted('create', 'customers') | async" nbButton outline status="success"
+      (click)="open()">New Customer</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table *ngIf="accessChecker.isGranted('view', 'customers') | async" [settings]="settings"
+      [source]="source" (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

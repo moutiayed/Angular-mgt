@@ -1,0 +1,11 @@
+:host nb-layout-column {
+  width: 500px;
+}
+
+:host nb-layout-column a {
+  background: #f4f4f7;
+}
+
+:host nb-layout-column nb-user{
+  background: #f4f4f7;
+}

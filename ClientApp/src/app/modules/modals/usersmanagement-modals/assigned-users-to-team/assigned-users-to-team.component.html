@@ -1,0 +1,21 @@
+<nb-card [style.width.px]="1000" [style.height.px]="650">
+    <nb-card-header>
+      <h4>Users Assigned To {{team.name}} Team</h4>
+      <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+    </nb-card-header>
+  
+    <nb-card-body>
+  
+      <form>
+  
+        <div class="form-group">
+          <h5>Employees List</h5>
+          <ng2-smart-table [settings]="settingsEmployee" [source]="sourceEmployee"
+          (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </div>
+    
+      </form>
+  
+    </nb-card-body>
+  </nb-card>

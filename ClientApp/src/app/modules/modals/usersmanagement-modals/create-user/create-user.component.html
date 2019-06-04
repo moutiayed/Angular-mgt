@@ -1,0 +1,178 @@
+<nb-card [style.width.px]="1500" [style.height.px]="800">
+  <nb-card-header>
+    Add User
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <!-- <form (ngSubmit)="create()"> -->
+    <form [formGroup]="userForm">
+      <div class="row">
+
+        <div class="col-sm-4">
+          <label for="firstname">First Name</label>
+          <input formControlName="firstName" nbInput type="text" class="form-control" id="firstname" name="firstname"
+            placeholder="First Name" [(ngModel)]="employee.firstName"
+            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          </div>
+
+          <label for="lastname">Last Name</label>
+          <input formControlName="lastname" nbInput type="text" class="form-control" id="lastname" name="lastname"
+            placeholder="Last Name" [(ngModel)]="employee.lastName"
+            [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+          <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+            <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+          </div>
+
+          <label for="cin">Cin</label>
+          <input formControlName="cin" nbInput class="form-control" id="cin" name="cin" placeholder="Cin"
+            [(ngModel)]="employee.cin" [ngClass]="{ 'is-invalid': submitted && f.cin.errors }">
+          <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+            <div *ngIf="f.cin.errors.required">Cin is required</div>
+          </div>
+
+          <label>Birthday</label>
+          <input nbInput formControlName="birthday" [nbDatepicker]="birthday" class="form-control"
+            placeholder="Birthday" [(ngModel)]="birthdayU" name="birthday"
+            [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }">
+          <nb-datepicker #birthday format="MM/dd/yyyy"></nb-datepicker>
+
+          <label for="adress">Address</label>
+          <input formControlName="adress" nbInput class="form-control" id="adress" name="adress" placeholder="Address"
+            [(ngModel)]="employee.adress" [ngClass]="{ 'is-invalid': submitted && f.adress.errors }">
+          <div *ngIf="submitted && f.adress.errors" class="invalid-feedback">
+            <div *ngIf="f.adress.errors.required">Address is required</div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <label for="city">City</label>
+          <input formControlName="city" nbInput type="text" class="form-control" id="city" name="city"
+            placeholder="City" [(ngModel)]="employee.city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.city.errors.required">City is required</div>
+          </div>
+
+          <label for="civilStatus">Civil Status</label>
+          <nb-select formControlName="civilStatus" size="small" outline status="success" name="civilStatus"
+            placeholder="Civil Status" [(ngModel)]="employee.civilStatus" (click)="$event.preventDefault()">
+            <option value="default" disabled selected>Select your option</option>
+            <nb-option value="Single">Single</nb-option>
+            <nb-option value="Married">Married</nb-option>
+            <nb-option value="Divorced">Divorced</nb-option>
+            <nb-option value="Widowed">Widowed</nb-option>
+            <nb-option value="Separated">Separated</nb-option>
+          </nb-select>
+
+          <label for="email">Email</label>
+          <input formControlName="email" nbInput type="text" class="form-control" id="email" name="email"
+            placeholder="email" [(ngModel)]="employee.email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+
+          <label>User name</label>
+          <input formControlName="userName" nbInput class="form-control" id="userName" name="userName"
+            placeholder="User Name" [(ngModel)]="employee.userName"
+            [ngClass]="{ 'is-invalid': submitted && f.userName.errors }">
+          <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+            <div *ngIf="f.userName.errors.required">user name is required</div>
+          </div>
+
+          <label for="password">Password</label>
+          <input formControlName="password" nbInput type="password" class="form-control" id="password" name="password"
+            placeholder="password" [(ngModel)]="employee.password"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4">
+          <label for="function">Function</label>
+          <input formControlName="function" nbInput class="form-control" id="function" name="function"
+            placeholder="Function" [(ngModel)]="employee.function"
+            [ngClass]="{ 'is-invalid': submitted && f.function.errors }">
+          <div *ngIf="submitted && f.function.errors" class="invalid-feedback">
+            <div *ngIf="f.function.errors.required">Function is required</div>
+          </div>
+
+          <label for="phoneNumber">Phone Number</label>
+          <input formControlName="phoneNumber" nbInput class="form-control" id="phoneNumber" name="phoneNumber"
+            placeholder="Phone Number" [(ngModel)]="employee.phoneNumber"
+            [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+          <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+            <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+          </div>
+
+          <label for="registrationNumber">Registration Number</label>
+          <input formControlName="registrationNumber" nbInput class="form-control" id="registrationNumber"
+            name="registrationNumber" placeholder="Registration Number" [(ngModel)]="employee.registrationNumber"
+            [ngClass]="{ 'is-invalid': submitted && f.registrationNumber.errors }">
+          <div *ngIf="submitted && f.registrationNumber.errors" class="invalid-feedback">
+            <div *ngIf="f.registrationNumber.errors.required">Registration is required</div>
+          </div>
+
+          <label>Start Date</label>
+          <input nbInput formControlName="startDate" [nbDatepicker]="startDate" class="form-control"
+            placeholder="Start Date" [(ngModel)]="startDateU" name="startDate"
+            [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }">
+          <nb-datepicker #startDate format="MM/dd/yyyy"></nb-datepicker>
+
+            <label for="role">Role</label>
+            <nb-select formControlName="Role" size="small" outline status="success" name="role" placeholder="Role"
+              [(ngModel)]="employee.role" (click)="$event.preventDefault()">
+              <option value="" disabled selected>Select your option</option>
+              <nb-option value="Admin">Administrator</nb-option>
+              <nb-option value="User">User</nb-option>
+              <nb-option value="TeamLeader">Team Leader</nb-option>
+            </nb-select>
+          </div>
+        </div>
+
+      <!-- <button nbButton class="clearButton" type="reset" outline status="info">Clear</button>-->
+
+      <button nbButton class="submitButton" type="submit" hero status="success" (click)="create()">Submit</button>
+
+    </form>
+    <hr>
+    <p style="font-size:20px;"><b>Add contracts to this user</b></p>
+    <form [formGroup]="contractForm">
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Contract</label>
+          <select formControlName="rate" class="form-control" placeholder="Select Contract" size="small" outline
+            status="success" [(ngModel)]="idcontract" name="contract" (click)="$event.preventDefault()">
+            <option value="default">select a contract</option>
+            <option value={{contract.id}} *ngFor="let contract of contracts">
+              {{contract.name}}
+            </option>
+          </select>
+
+          <label for="Rate">Rate</label>
+          <input formControlName="rate" nbInput type="number" class="form-control" id="Rate" name="Rate"
+            placeholder="Rate" [(ngModel)]="Rate" [ngClass]="{ 'is-invalid': affected && ff.rate.errors }">
+          <div *ngIf="affected && ff.rate.errors" class="invalid-feedback">
+            <div *ngIf="ff.rate.errors.required">Rate is required</div>
+          </div>
+
+        </div>
+        <div class="col-sm-2">
+          <button nbButton outline status="info" (click)="addContract()">Add Contract</button>
+        </div>
+
+        <div class="col-sm-6">
+          <ng2-smart-table [settings]="settings" [source]="source"
+            (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </div>
+      </div>
+    </form>
+
+  </nb-card-body>
+</nb-card>

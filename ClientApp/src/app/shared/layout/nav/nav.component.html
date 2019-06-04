@@ -1,0 +1,42 @@
+<table style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+
+  <tr>
+
+    <td width="1%"></td>
+
+    <td>
+      <a href="#" (click)="toggle()"><i class="nb-menu"></i></a>
+    </td>
+
+    <td width="5%"></td>
+
+    <td>
+      <table font-family="Segoe UI">
+        <tr>
+          <td><img src="assets/logo.png" height="75" width="150"></td>
+          <td><H2>Management</H2></td>
+          <td><H2>Tools</H2></td>
+        </tr>
+      </table>
+    </td>
+
+<td width="81%"></td>
+
+<td width="7%">
+  <div *ngIf="!user; else elseBlock">
+    <!-- not display current user credentials if not logged in  -->
+  </div>
+  <ng-template #elseBlock>
+    <form>
+      <nb-user [name]="user?.fullName" [title]="user?.function" size="middle" [nbContextMenu]="items"
+        nbContextMenuTag="my-context-menu">
+      </nb-user>
+    </form>
+  </ng-template>
+</td>
+
+<td width="2%"></td>
+
+</tr>
+
+</table>

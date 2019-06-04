@@ -1,0 +1,143 @@
+<nb-card [style.width.px]="1000" [style.height.px]="735">
+  <nb-card-header>
+    Add Contract
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <form [formGroup]="contractForm">
+
+      <div class="row">
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label>Name</label>
+            <input formControlName="name" nbInput type="text" class="form-control" placeholder="Name" name="name"
+              [(ngModel)]="contract.name" [ngClass]="{ 'is-invalid': submitted && f.name.invalid }" />
+            <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Name is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea formControlName="description" rows="4" nbInput class="form-control" placeholder="Description"
+              name="description" [(ngModel)]="contract.description"
+              [ngClass]="{ 'is-invalid': submitted && f.description.invalid }">
+            </textarea>
+            <div *ngIf="submitted && f.description.invalid" class="invalid-feedback">
+              <div *ngIf="f.description.errors.required">Description is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Customer List</label>
+            <select (blur)="CustomervalidateSelect($event.target.value)"
+              (change)="CustomervalidateSelect($event.target.value)" class="form-control" placeholder="Select Customer"
+              size="small" outline status="success" [(ngModel)]="customerId" formControlName="customer" name="id"
+              (click)="$event.preventDefault()" [ngClass]="{ 'is-invalid': submitted && CustomerselectHasError }">
+              <option value="default">select a contract</option>
+              <option value={{customer.id}} *ngFor="let customer of customers">
+                {{customer.name}}
+              </option>
+            </select>
+            <div *ngIf="CustomerselectHasError" class="invalid-feedback">Customer is required</div>
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select (blur)="StatusvalidateSelect($event.target.value)"
+              (change)="StatusvalidateSelect($event.target.value)" class="form-control" placeholder="Select Status"
+              size="small" outline status="success" [(ngModel)]="parameter" formControlName="parameter" name="parameter"
+              (click)="$event.preventDefault()" [ngClass]="{ 'is-invalid': submitted && StatusselectHasError }">
+              <option value="default">select a contract</option>
+              <option value={{parameter.value}} *ngFor="let parameter of parameters">
+                {{parameter.value}}
+              </option>
+            </select>
+            <div *ngIf="StatusselectHasError" class="invalid-feedback">Status is required</div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label>Start Date</label>
+            <input formControlName="startDate" class="form-control" nbInput placeholder="Start Date"
+              [nbDatepicker]="startDate" [(ngModel)]="startDateC"
+              [ngClass]="{ 'is-invalid': submitted && f.startDate.invalid }">
+            <div *ngIf="submitted && f.startDate.invalid" class="invalid-feedback">Start Date is required</div>
+            <nb-datepicker #startDate format="MM/dd/yyyy"></nb-datepicker>
+          </div>
+
+          <div class="form-group">
+            <label>End Date</label>
+            <input formControlName="endDate" class="form-control" nbInput placeholder="End Date"
+              [nbDatepicker]="endDate" [(ngModel)]="endDateC"
+              [ngClass]="{ 'is-invalid': submitted && f.endDate.invalid }">
+            <div *ngIf="submitted && f.endDate.invalid" class="invalid-feedback">End Date is required</div>
+            <nb-datepicker #endDate format="MM/dd/yyyy"></nb-datepicker>
+          </div>
+
+          <div class="row">
+
+            <div class="form-group" class="col-md-6">
+              <label>Coeff Base</label>
+              <input onkeypress="return event.charCode >= 48" min="0" formControlName="coeffBase" nbInput type="number" class="form-control" placeholder="Coeff Base"
+                name="coeffBase" [(ngModel)]="contract.coeffBase"
+                [ngClass]="{ 'is-invalid': submitted && f.coeffBase.invalid }">
+              <div *ngIf="submitted && f.coeffBase.invalid" class="invalid-feedback">
+                <div *ngIf="f.coeffBase.errors.required">Coeff Base is required</div>
+              </div>
+            </div>
+
+            <div class="form-group" class="col-md-6">
+              <label>Coeff Sunday</label>
+              <input onkeypress="return event.charCode >= 48" min="0" formControlName="coeffSunday" nbInput type="number" class="form-control" placeholder="Coeff Sunday"
+                name="coeffSunday" [(ngModel)]="contract.coeffSunday"
+                [ngClass]="{ 'is-invalid': submitted && f.coeffSunday.invalid }">
+              <div *ngIf="submitted && f.coeffSunday.invalid" class="invalid-feedback">
+                <div *ngIf="f.coeffSunday.errors.required">Coeff Sunday is required</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group" class="col-md-6">
+              <label>Coeff Saturday</label>
+              <input onkeypress="return event.charCode >= 48" min="0" formControlName="coeffSaturday" nbInput type="number" class="form-control"
+                placeholder="Coeff Saturday" name="coeffSaturday" [(ngModel)]="contract.coeffSaturday"
+                [ngClass]="{ 'is-invalid': submitted && f.coeffSaturday.invalid }">
+              <div *ngIf="submitted && f.coeffSaturday.invalid" class="invalid-feedback">
+                <div *ngIf="f.coeffSaturday.errors.required">Coeff Saturday is required</div>
+              </div>
+            </div>
+
+            <div class="form-group" class="col-md-6">
+              <label>Coeff out of business week</label>
+              <input onkeypress="return event.charCode >= 48" min="0" formControlName="coeffOutOfBusinessWeek" nbInput type="number" class="form-control"
+                placeholder="Coeff out of business week" name="coeffOutOfBusinessWeek"
+                [(ngModel)]="contract.coeffOutOfBusinessWeek"
+                [ngClass]="{ 'is-invalid': submitted && f.coeffOutOfBusinessWeek.invalid }">
+              <div *ngIf="submitted && f.coeffOutOfBusinessWeek.invalid" class="invalid-feedback">
+                <div *ngIf="f.coeffOutOfBusinessWeek.errors.required">Coeff Out Of Business Week is required</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <button nbButton class="clearButton" type="reset" outline status="info">Clear</button>
+
+      <button nbButton class="submitButton" type="submit" hero status="success" (click)="create()">Submit</button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>

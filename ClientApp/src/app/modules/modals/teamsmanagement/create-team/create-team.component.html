@@ -1,0 +1,63 @@
+<nb-card [style.width.px]="1000" [style.height.px]="440">
+  <nb-card-header>
+    Add Team
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+
+      <div class="row">
+
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input nbInput type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="team.name"
+              #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+            <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+              <div *ngIf="name?.errors.required">Name is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Type</label>
+            <select (blur)="TypeValidateSelect($event.target.value)" (change)="TypeValidateSelect($event.target.value)" class="form-control" placeholder="Select Type" size="small" outline status="success"
+              [(ngModel)]="team.type" name="team.type" (click)="$event.preventDefault()"
+              [ngClass]="{ 'is-invalid': f.submitted && TypeSelectHasError }" required>
+              <option value={{parametertype.value}} *ngFor="let parametertype of parameterstype">
+                {{parametertype.value}}
+              </option>
+            </select>
+            <div *ngIf="f.submitted && TypeSelectHasError" class="invalid-feedback">
+             Type is required
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea nbInput id="description" class="form-control" placeholder="Description" rows="3"
+              name="description" [(ngModel)]="team.description" #description="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required></textarea>
+            <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+              <div *ngIf="description?.errors.required">Description is required</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <button nbButton class="clearButton" type="reset" outline status="info">Clear</button>
+
+      <button nbButton class="submitButton" hero status="success">Submit</button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>

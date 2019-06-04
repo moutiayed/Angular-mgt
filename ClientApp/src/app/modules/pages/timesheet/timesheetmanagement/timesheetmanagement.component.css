@@ -1,0 +1,11 @@
+nb-card-header button {
+  float: right;
+}
+
+button {
+  margin: 1rem;
+}
+
+:host /deep/ ng2-smart-table tbody > tr > td:first-child { 
+	      text-align: center; 
+}

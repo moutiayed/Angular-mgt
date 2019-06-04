@@ -1,0 +1,67 @@
+<!--<nb-card>
+  <nb-card-header>
+    Parameters List
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onEditConfirm($event)"
+          (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+      </div>
+      <div class="col-sm-6">
+        <form>
+          <nb-card>
+            <nb-card-header>
+              Add Parameters
+            </nb-card-header>
+            <nb-card-body>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div *ngIf=!showhide>
+                    <label>Parameter Groups</label>
+
+                    <select (ngModelChange)="onChange($event)" class="form-control" placeholder="Select Contract"
+                      size="small" outline status="success" [(ngModel)]="group" name="group">
+                      <option value={{group}} *ngFor="let group of groups">
+                        {{group}}
+                      </option>
+                    </select></div>
+
+                  <div *ngIf=showhide><label for="value">Group</label>
+                    <input nbInput class="form-control" id="newGroup" name="newGroup" placeholder="new Group"
+                      [(ngModel)]="newGroup">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="newValue">Value</label>
+                  <input nbInput class="form-control" id="newValue" name="newValue"
+                    placeholder="newValue" [(ngModel)]="newValue"
+                    [ngClass]="{ 'is-invalid': submittedV && f.newValue.errors }">
+                  <div *ngIf="submittedV && f.newValue.errors" class="invalid-feedback">
+                    <div *ngIf="f.newValue.errors.required">Value is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf=!showhide>
+                <button nbButton hero status="success" (click)="showhide=!showhide">Add Group</button>
+                <button nbButton class="submitButton" type="submit" hero status="success" (click)="addValue()">Add
+                  Value</button>
+              </div>
+
+              <div *ngIf=showhide>
+                <button nbButton hero status="success" (click)="showhide=!showhide">Back</button>
+                <button nbButton class="submitButton" type="submit" hero status="success" (click)="addGroup()">Add
+                  Group</button>
+              </div>
+
+            </nb-card-body>
+          </nb-card>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+-->

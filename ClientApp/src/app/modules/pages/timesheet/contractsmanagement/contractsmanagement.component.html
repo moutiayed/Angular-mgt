@@ -1,0 +1,16 @@
+<nb-card>
+  <nb-card-header>
+    Contracts List
+    <button *ngIf="accessChecker.isGranted('create', 'contracts') | async"
+    nbButton outline status="success" (click)="open()">New Contract</button>
+  </nb-card-header>
+
+  <nb-card-body>
+      
+    <ng2-smart-table
+    *ngIf="accessChecker.isGranted('view', 'contracts') | async"
+    [settings]="settings" [source]="source" 
+    (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

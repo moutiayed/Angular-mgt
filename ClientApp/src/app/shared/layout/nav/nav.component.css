@@ -1,0 +1,9 @@
+nb-user {
+  justify-content: flex-end;
+  float: right;
+}
+
+a {
+  font-size: 2rem;
+  text-decoration: none;
+}

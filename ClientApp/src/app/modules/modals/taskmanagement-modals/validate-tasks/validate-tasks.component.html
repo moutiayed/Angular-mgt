@@ -1,0 +1,19 @@
+<nb-card [style.width.px]="1200" [style.height.px]="700">
+  <nb-card-header>
+    Not Validated Tasks
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" 
+      (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)"
+      (userRowSelect)="rowClicked($event)">
+    </ng2-smart-table>
+    <br>
+    <button nbButton class="submitButton" (click)="create()" type="submit" hero status="success">Validate</button>
+
+  </nb-card-body>
+
+</nb-card>
+
+

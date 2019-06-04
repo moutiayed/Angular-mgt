@@ -1,0 +1,236 @@
+<nb-card [style.width.px]="1300" [style.height.px]="800">
+
+  <nb-card-header>
+    Profile
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <form>
+      <nb-card>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-sm-2">
+              <img src="assets/dominus.jpg" height="170" width="170"></div>
+            <div class="col-sm-8">
+              <div class="form-group">
+                <div class="row">
+                  <label for="firstname"><b>First Name:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="text" class="form-control" id="firstname" name="firstname"
+                      placeholder="First Name" [(ngModel)]="employee.firstName"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.firstName}}</label></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="lastname"><b>Last Name:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"> <input nbInput type="text" class="form-control" id="lastname" name="lastname"
+                      placeholder="Last Name" [(ngModel)]="employee.lastName"> </div>
+                  <div *ngIf="!showHide"> <label>{{employee.lastName}}</label></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label for="email"><b>Email:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="text" class="form-control" id="email" name="email"
+                      placeholder="email" [(ngModel)]="employee.email"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.email}}</label></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label for="function"><b>Function:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="function" class="form-control" id="function"
+                      name="function" placeholder="Function" [(ngModel)]="employee.function"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.function}}</label></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <div class="row">
+                  <label for="role"><b>Role:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div> <label>{{employee.role}}</label></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>
+          Personal Data
+        </nb-card-header>
+        <nb-card-body>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="row">
+                  <label for="cin"><b>Cin:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="cin" class="form-control" id="cin" name="cin"
+                      placeholder="Cin" [(ngModel)]="employee.cin"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.cin}}</label></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label><b>Birthday:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"> <input [nbDatepicker]="birthday" class="form-control" placeholder="Birthday"
+                      [(ngModel)]="employee.birthday" name="birthday"></div>
+                  <nb-datepicker #birthday format="dd\MM\yyyy"></nb-datepicker>
+                  <div *ngIf="!showHide"> <label>{{employee.birthday}}</label></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="adress"><b>Address:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="adress" class="form-control" id="adress" name="adress"
+                      placeholder="Address" [(ngModel)]="employee.adress"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.adress}}</label></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="city"><b>City:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="text" class="form-control" id="city" name="city"
+                      placeholder="City" [(ngModel)]="employee.city"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.city}}</label></div>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-sm-6">
+
+
+              <div class="form-group">
+                <div class="row">
+
+                  <label for="phoneNumber"><b>Phone Number:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="phoneNumber" class="form-control" id="phoneNumber"
+                      name="phoneNumber" placeholder="Phone Number" [(ngModel)]="employee.phoneNumber"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.phoneNumber}}</label></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label for="registrationNumber"><b>Registration Number:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input nbInput type="registrationNumber" class="form-control"
+                      id="registrationNumber" name="registrationNumber" placeholder="Registration Number"
+                      [(ngModel)]="employee.registrationNumber"></div>
+                  <div *ngIf="!showHide"> <label>{{employee.registrationNumber}}</label></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <label><b>Start Date:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide"><input [nbDatepicker]="startDate" class="form-control" placeholder="Start Date"
+                      [(ngModel)]="employee.startDate" name="startDateR">
+                    <nb-datepicker #startDate format="dd\MM\yyyy"></nb-datepicker>
+                  </div>
+                  <div *ngIf="!showHide"> <label>{{employee.startDate}}</label></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label for="civilStatus"><b>Civil Status:&nbsp;&nbsp;&nbsp;</b></label>
+                  <div *ngIf="showHide">
+                    <nb-select type="civilStatus" size="small" outline status="success" name="civilStatus"
+                      placeholder="Civil Status" [(ngModel)]="employee.civilStatus" (click)="$event.preventDefault()">
+                      <option value="" disabled selected>Select your option</option>
+                      <nb-option value="Single">Single</nb-option>
+                      <nb-option value="Married">Married</nb-option>
+                      <nb-option value="Divorced">Divorced</nb-option>
+                      <nb-option value="Widowed">Widowed</nb-option>
+                      <nb-option value="Separated">Separated</nb-option> <!--Liste dynamique ici-->
+                    </nb-select>
+                  </div>
+                  <div *ngIf="!showHide"> <label>{{employee.civilStatus}}</label></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-reveal-card>
+        <nb-card-front>
+          <nb-card>
+            <nb-card-body>
+              <p>
+                <b>Login Parameters</b> <br /><br /><br /><br /><br /><br /><br /><br />
+              </p>
+
+            </nb-card-body>
+          </nb-card>
+        </nb-card-front>
+
+        <nb-card-back>
+
+          <nb-card>
+
+            <nb-card-body>
+
+              <div class="row">
+
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <label for="civilStatus">User name</label>
+                    <input Disabled nbInput type="userName" class="form-control" id="userName" name="userName"
+                      placeholder="User Name" [(ngModel)]="employee.userName">
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="oldPassword">Current Password</label>
+                        <input nbInput type="oldPassword" class="form-control" id="oldPassword" name="oldPassword"
+                          placeholder="oldPassword" [(ngModel)]="oldPassword">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input nbInput type="newPassword" class="form-control" id="newPassword" name="newPassword"
+                          placeholder="newPassword" [(ngModel)]="newPassword">
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <button nbButton class="submitButton" type="submit" hero status="success"
+                    (click)="changePassword()">Confirm</button>
+                </div>
+
+              </div>
+
+            </nb-card-body>
+          </nb-card>
+        </nb-card-back>
+      </nb-reveal-card>
+    </form>
+
+    <div *ngIf=!showHide>
+      <button nbButton status="info" (click)="showHide = !showHide">Edit</button>
+    </div>
+
+    <div *ngIf=showHide><button nbButton class="submitButton" type="submit" hero status="success"
+        (click)="update()">Submit</button>
+    </div>
+
+  </nb-card-body>
+
+</nb-card>

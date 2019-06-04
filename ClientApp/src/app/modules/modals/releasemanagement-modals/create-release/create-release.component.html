@@ -1,0 +1,59 @@
+<nb-card [style.width.px]="1000" [style.height.px]="425">
+  <nb-card-header>
+    Add Release
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <form [formGroup]="releaseForm" (ngSubmit)="create()">
+
+      <div class="row">
+
+        <div class="col-sm-6">
+           <div class="form-group">
+            <label>Start Date</label>
+            <input formControlName="startDate"  [nbDatepicker]="startDate" class="form-control" [(ngModel)]="startDateR" name="startDate"
+            [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }">
+            <nb-datepicker #startDate format="MM/dd/yyyy"></nb-datepicker>
+            <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+              <div>Start Date is required</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label>Release date</label>
+            <input formControlName="releaseDate"  [nbDatepicker]="releaseDate" class="form-control" [(ngModel)]="releaseDateR" name="releaseDate"
+            [ngClass]="{ 'is-invalid': submitted && f.releaseDate.errors }">
+            <nb-datepicker #releaseDate format="MM/dd/yyyy"></nb-datepicker>
+            <div *ngIf="submitted && f.releaseDate.errors" class="invalid-feedback">
+              <div>Release Date is required</div>
+          </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Description</label>
+            <textarea formControlName="Description" rows="4" nbInput class="form-control" placeholder="Description" name="Description"
+              [(ngModel)]="release.Description" [ngClass]="{ 'is-invalid': submitted && f.Description.errors }"></textarea>
+              <div *ngIf="submitted && f.Description.errors" class="invalid-feedback">
+                <div *ngIf="f.Description.errors.required">Description is required</div>
+            </div>
+            
+          </div>
+        </div>
+
+
+        
+      </div>
+
+        <button nbButton class="clearButton" type="reset" outline status="info">Clear</button>
+
+        <button nbButton class="submitButton" type="submit" hero status="success" >Submit</button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>

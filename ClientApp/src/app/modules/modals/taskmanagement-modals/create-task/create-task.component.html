@@ -1,0 +1,129 @@
+<nb-card [style.width.px]="1300" [style.height.px]="900">
+  <nb-card-header>
+    Add Task
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="form-group">
+      <h5>Requirements List</h5>
+      <ng2-smart-table [settings]="settingsReq" [source]="sourceReq" (userRowSelect)="rowClicked($event)">
+      </ng2-smart-table>
+    </div>
+    <form [formGroup]="taskForm">
+
+      <div class="row">
+        <div class="col-sm-4">
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea formControlName="description" nbInput class="form-control" rows="4" placeholder="Description"
+              name="description" [(ngModel)]="task.description"
+              [ngClass]="{ 'is-invalid': submitted && f.description.invalid }"></textarea>
+            <div *ngIf="submitted && f.description.invalid" class="invalid-feedback">
+              <div *ngIf="f.description.errors.required">Description is required</div>
+            </div>
+          </div>
+
+          <div [hidden]="hideRequirementListCombo" class="form-group">
+            <label for="contract">Requirement</label>
+            <select formControlName="Requirement" disabled class="form-control" placeholder="Select the Requirement" size="small" outline
+              status="success" [(ngModel)]="idR" name="idR" (click)="$event.preventDefault()">
+              <option *ngFor=" let requirement of requirements" value="{{requirement.id}}">
+                {{requirement.nom}}
+              </option>
+            </select>
+            <div *ngIf="RequirementSelectHasError" class="invalid-feedback">Employee is required</div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Estimate WorkLoad</label>
+            <input formControlName="estimateWorkLoad" nbInput type="number" onkeypress="return event.charCode >= 48" min="0" placeholder="Estimate WorkLoad"
+              class="form-control" name="estimateWorkLoad" [(ngModel)]="task.estimateWorkLoad"
+              [ngClass]="{ 'is-invalid': submitted && f.estimateWorkLoad.invalid }">
+            <div *ngIf="submitted && f.estimateWorkLoad.invalid" class="invalid-feedback">
+              <div *ngIf="f.estimateWorkLoad.errors.required">Estimate WorkLoad is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>To finalise</label>
+            <input formControlName="toFinalise" nbInput type="number" onkeypress="return event.charCode >= 48" min="0"  placeholder="To finalise" class="form-control"
+              name="toFinalise" [(ngModel)]="task.toFinalise"
+              [ngClass]="{ 'is-invalid': submitted && f.toFinalise.invalid }">
+            <div *ngIf="submitted && f.toFinalise.invalid" class="invalid-feedback">
+              <div *ngIf="f.toFinalise.errors.required">To Finalise is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+
+            <div class="form-group">
+              <label>Type</label>
+              <select formControlName="Type" (blur)="TypeValidateSelect($event.target.value)"
+                (change)="TypeValidateSelect($event.target.value)" class="form-control" placeholder="Select Type"
+                size="small" outline status="success" [(ngModel)]="type" name="type" (click)="$event.preventDefault()"
+                [ngClass]="{ 'is-invalid': submitted && TypeSelectHasError }">
+                <option value={{p.value}} *ngFor="let p of typeList">
+                  {{p.value}}
+                </option>
+              </select>
+              <div *ngIf="TypeSelectHasError" class="invalid-feedback">Type is required</div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Closing date</label>
+            <input formControlName="closingDate" [nbDatepicker]="datepicker" placeholder="Closing date"
+              class="form-control" [(ngModel)]="closingDateT"
+              [ngClass]="{ 'is-invalid': submitted && f.closingDate.errors }">
+            <nb-datepicker #datepicker format="MM/dd/yyyy"></nb-datepicker>
+            <div *ngIf="submitted && f.closingDate.errors" class="invalid-feedback">
+              <div>Closing Date is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select (blur)="StatusValidateSelect($event.target.value)"
+              (change)="StatusValidateSelect($event.target.value)" class="form-control" placeholder="Select Status"
+              size="small" outline status="success" formControlName="status" [(ngModel)]="parameter" name="parameter"
+              (click)="$event.preventDefault()" [ngClass]="{ 'is-invalid': submitted && StatusSelectHasError }">
+              <option value={{parameter.value}} *ngFor="let parameter of parameters">
+                {{parameter.value}}
+              </option>
+            </select>
+            <div *ngIf="StatusSelectHasError" class="invalid-feedback">Status is required</div>
+          </div>
+
+          <div [hidden]="hideUsersCombo" class="form-group">
+            <!-- change that later no ! for user-->
+            <label>Employees</label>
+            <!-- Will be auto complete here -->
+            <select (blur)="EmployeesValidateSelect($event.target.value)"
+              (change)="EmployeesValidateSelect($event.target.value)" class="form-control" placeholder="Select Employee"
+              size="small" outline status="success" formControlName="employees" [(ngModel)]="idEmp" name="idEmp"
+              (click)="$event.preventDefault()" [ngClass]="{ 'is-invalid': submitted && EmployeesSelectHasError }">
+              <option *ngFor="let employee of sourceEmp" value="{{employee.id}}">
+                {{employee.firstName}} {{employee.lastName}}
+              </option>
+            </select>
+            <div *ngIf="EmployeesSelectHasError" class="invalid-feedback">Employee is required</div>
+          </div>
+
+        </div>
+      </div>
+      <button nbButton class="clearButton" type="reset" outline status="info">Clear</button>
+
+      <button nbButton class="submitButton" hero status="success" (click)="create()">Submit</button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,16 @@
+<nb-card>
+  <nb-card-header>
+    Release List
+    <button 
+    *ngIf="accessChecker.isGranted('create', 'releases') | async"
+    nbButton outline status="success" (click)="open()">New Release</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table 
+    *ngIf="accessChecker.isGranted('view', 'releases') | async"
+    [settings]="settings" [source]="source"
+    (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

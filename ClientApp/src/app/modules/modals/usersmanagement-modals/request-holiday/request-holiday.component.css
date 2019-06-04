@@ -1,0 +1,19 @@
+button {
+    margin: 1rem;
+  }
+
+  [nbInput] {
+    margin-bottom: 1rem;
+  }
+
+  .form-control:focus {
+    box-shadow:none;
+  }
+
+  .submitButton {
+    float: right;
+  }
+
+  nb-card-header button {
+    float: right;
+  }

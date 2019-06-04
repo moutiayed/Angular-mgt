@@ -1,0 +1,96 @@
+<nb-card [style.width.px]="1400" [style.height.px]="800">
+  <nb-card-header>
+    Add Timesheet
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+  <nb-card-body>
+    <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+
+      <div class="form-group">
+        <h5>Tasks List</h5>
+        <ng2-smart-table [settings]="settingsTask" [source]="sourceTask" 
+        (userRowSelect)="rowClicked($event)">
+        </ng2-smart-table>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-4">
+
+          <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea nbInput id="comment" class="form-control" [(ngModel)]="timesheet.comment" name="comment" rows="4"
+              placeholder="Comment" #comment="ngModel" [ngClass]="{ 'is-invalid': f.submitted && comment.invalid }"
+              required></textarea>
+            <div *ngIf="f.submitted && comment.invalid" class="invalid-feedback">
+              <div *ngIf="comment?.errors.required">Comment is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Date</label>
+            <input [nbDatepicker]="datepicker" placeholder="Date" class="form-control"
+              [ngModelOptions]="{standalone: true}" [(ngModel)]="dateTimesheet">
+            <nb-datepicker #datepicker format="dd\MM\yyyy">
+            </nb-datepicker>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="Guard">Is Guard</label>
+            <select class="form-control" placeholder="is Guard" id="Guard" size="small" outline status="success"
+              [(ngModel)]="timesheet.isGuard" (click)="$event.preventDefault()" [ngModelOptions]="{standalone: true}">
+              <option value=" TRUE">Yes</option>
+              <option value="FALSE" selected>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Guard">Is Billable</label>
+            <select class="form-control" placeholder="is Billable" id="billable" size="small" outline status="success"
+              [(ngModel)]="timesheet.billable" (click)="$event.preventDefault()" [ngModelOptions]="{standalone: true}">
+              <option value="TRUE" selected>Yes</option>
+              <option value="FALSE">No</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4">
+
+          <div class="form-group">
+            <label for="userTask">Select Your Task</label>
+            <select disabled class="form-control" placeholder="Select Your Task" size="small" outline status="success"
+              [(ngModel)]="idUT" name="idUT" (click)="$event.preventDefault()">
+              <option value="" disabled selected>Select your option</option>
+              <option *ngFor="let userTask of userTasks" value="{{userTask.id}}">
+                {{userTask.description}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="duration">Duration</label>
+            <input nbInput type="number" [(ngModel)]="timesheet.duration" name="duration" class="form-control"
+              id="duration" #duration="ngModel" [ngClass]="{ 'is-invalid': f.submitted && duration.invalid }"
+              required />
+            <div *ngIf="f.submitted && duration.invalid" class="invalid-feedback">
+              <div *ngIf="duration?.errors.required">Duration is required</div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <button nbButton class="clearButton" type="reset" outline status="info">Clear</button>
+
+      <button nbButton class="submitButton" (click)="create()" type="submit" hero status="success">Submit</button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>

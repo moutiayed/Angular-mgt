@@ -1,0 +1,9 @@
+ :host nb-layout-column {
+    height: 50vw;
+  }
+  :host nb-layout-column:first-child {
+    background: #e3e6f9;
+  }
+  :host nb-layout-column:last-child {
+    background: #edeef7;
+  }

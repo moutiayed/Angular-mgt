@@ -1,0 +1,39 @@
+<nb-card [style.width.px]="1000" [style.height.px]="320">
+  <nb-card-header>
+    Request a holiday
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <form>
+
+      <div class="row">
+
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label>Date</label>
+            <input [nbDatepicker]="datepicker" placeholder="Date" class="form-control">
+            <nb-datepicker #datepicker format="dd\MM\yyyy"></nb-datepicker>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label for="duration">Duration</label>
+            <input nbInput type="number" class="form-control" id="duration" name="duration">
+          </div>
+
+        </div>
+
+      </div>
+
+      <button nbButton class="submitButton" (click)="create()" type="submit" hero status="success">Submit</button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>

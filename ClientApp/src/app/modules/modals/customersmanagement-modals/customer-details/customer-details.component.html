@@ -1,0 +1,20 @@
+<nb-card [style.width.px]="1250" [style.height.px]="700">
+   <nb-card-body>
+
+      <nb-tabset>
+         <nb-tab tabIcon="nb-person">
+            <p>Customer<strong>Details</strong>.</p>
+         </nb-tab>
+
+         <nb-tab tabIcon="nb-notifications">
+            <p>List of <strong>Contracts</strong>.</p>
+
+            <ng2-smart-table [settings]="settings" [source]="contracts" (editConfirm)="onEditConfirm($event)"
+               (deleteConfirm)="onDeleteConfirm($event)">
+            </ng2-smart-table>
+
+         </nb-tab>
+      </nb-tabset>
+
+   </nb-card-body>
+</nb-card>

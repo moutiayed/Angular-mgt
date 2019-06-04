@@ -1,0 +1,16 @@
+<nb-card [style.width.px]="1050" [style.height.px]="700">
+  <nb-card-header>
+    Task's List
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onEditConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton hero status="success" (click)="open()" class="submitButton">New Task</button>
+  </nb-card-footer>
+</nb-card>

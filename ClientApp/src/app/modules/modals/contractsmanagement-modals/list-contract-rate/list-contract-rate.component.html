@@ -1,0 +1,14 @@
+<nb-card [style.width.px]="1000" [style.height.px]="600">
+  
+  <nb-card-header>
+    Rate List
+    <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="rate" 
+    (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+
+</nb-card>

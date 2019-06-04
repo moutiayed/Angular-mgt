@@ -1,0 +1,16 @@
+<nb-card>
+  <nb-card-header>
+    Teams List
+    <button 
+    *ngIf="accessChecker.isGranted('create', 'teams') | async"
+    nbButton outline status="success" (click)="open()">New Team</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table 
+      *ngIf="accessChecker.isGranted('view', 'teams') | async"
+      [settings]="settings" [source]="source" (editConfirm)="onEditConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

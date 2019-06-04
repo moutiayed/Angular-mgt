@@ -1,0 +1,17 @@
+<nb-card>
+  <nb-card-header>
+    Employees List
+    <button 
+    *ngIf="accessChecker.isGranted('create', 'users') | async"
+    nbButton outline status="success" (click)="open()">New User</button>
+    <!-- <button nbButton outline status="info" (click)="open2()">Request a holiday</button> -->
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table 
+    *ngIf="accessChecker.isGranted('view', 'users') | async"
+    [settings]="settings" [source]="source" 
+    (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
